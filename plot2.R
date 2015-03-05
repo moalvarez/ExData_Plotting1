@@ -14,13 +14,13 @@ plot2 <- function(){
 
       ##  Create a subset frame for the two day period to be plotted
       subsetFrame <- na.omit(powerFrame[((powerFrame$Time >= as.POSIXlt("2007-02-01")) & 
-                                              (powerFrame$Time < as.POSIXlt("2007-02-03"))),],50)
+                                              (powerFrame$Time < as.POSIXlt("2007-02-03"))),])
 
       ##  Open the png file device
       png(file = "plot2.png")
       
       ##  Make the plot
-      plot( mySubFrame$Time, mySubFrame$Global_active_power, xlab = "", 
+      plot( subsetFrame$Time, subsetFrame$Global_active_power, xlab = "", 
                         ylab = "Global Active Power (kilowatts)", type = "l")
       
       ##  Close the device

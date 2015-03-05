@@ -1,5 +1,5 @@
 ## This function reads the "household_power_consumption" data file and creates the
-## second plot for Course Project 1 of the Exploratory Data Analysis Course
+## third plot for Course Project 1 of the Exploratory Data Analysis Course
 ## Author: Miguel Alvarez
 
 plot3 <- function(){
@@ -14,16 +14,16 @@ plot3 <- function(){
 
       ##  Create a subset frame for the two day period to be plotted
       subsetFrame <- na.omit(powerFrame[((powerFrame$Time >= as.POSIXlt("2007-02-01")) & 
-                                    (powerFrame$Time < as.POSIXlt("2007-02-03"))),],50)
+                                    (powerFrame$Time < as.POSIXlt("2007-02-03"))),])
 
       ##  Open the png file device
       png(file = "plot3.png")
       
       ##  Make the plot
-      with(mySubFrame, plot(Time, Sub_metering_1, xlab = "", 
+      with(subsetFrame, plot(Time, Sub_metering_1, xlab = "", 
                             ylab = "Energy sub metering", type = "l"))
-      with(mySubFrame, points(Time, Sub_metering_2, type = "l", col = "red"))
-      with(mySubFrame, points(Time, Sub_metering_3, type = "l", col = "blue"))
+      with(subsetFrame, points(Time, Sub_metering_2, type = "l", col = "red"))
+      with(subsetFrame, points(Time, Sub_metering_3, type = "l", col = "blue"))
       legend("topright", lwd = 1, col = c("black", "red", "blue"), 
                   legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
       

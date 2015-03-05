@@ -14,7 +14,7 @@ plot4 <- function(){
       
       ##  Create a subset frame for the two day period to be plotted
       subsetFrame <- na.omit(powerFrame[((powerFrame$Time >= as.POSIXlt("2007-02-01")) & 
-                                               (powerFrame$Time < as.POSIXlt("2007-02-03"))),],50)
+                                               (powerFrame$Time < as.POSIXlt("2007-02-03"))),])
       
       ##  Open the png file device
       png(file = "plot4.png")
@@ -23,23 +23,23 @@ plot4 <- function(){
       par(mfrow = c(2,2))
       
       #   Plot Global Active Power in first slot (top left) 
-      plot( mySubFrame$Time, mySubFrame$Global_active_power, xlab = "", 
+      plot( subsetFrame$Time, subsetFrame$Global_active_power, xlab = "", 
             ylab = "Global Active Power", type = "l")
       
       #   Plot Voltage second slot (top right)
-      plot( mySubFrame$Time, mySubFrame$Voltage, xlab = "datetime", 
+      plot( subsetFrame$Time, subsetFrame$Voltage, xlab = "datetime", 
                   ylab = "Voltage", type = "l")
       
       #   Plot Energy Sub Metering in third slot (bottom left)
-      with(mySubFrame, plot(Time, Sub_metering_1, xlab = "", 
+      with(subsetFrame, plot(Time, Sub_metering_1, xlab = "", 
                             ylab = "Energy sub metering", type = "l"))
-      with(mySubFrame, points(Time, Sub_metering_2, type = "l", col = "red"))
-      with(mySubFrame, points(Time, Sub_metering_3, type = "l", col = "blue"))
+      with(subsetFrame, points(Time, Sub_metering_2, type = "l", col = "red"))
+      with(subsetFrame, points(Time, Sub_metering_3, type = "l", col = "blue"))
       legend("topright", lwd = 1, bty = "n", col = c("black", "red", "blue"), 
              legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 
       #   Plot Global Reactive Power in fourth slot (bottom right)
-      plot( mySubFrame$Time, mySubFrame$Global_reactive_power, xlab = "datetime", 
+      plot( subsetFrame$Time, subsetFrame$Global_reactive_power, xlab = "datetime", 
                   ylab = "Global_reactive_power", type = "l")
       
       ##  Close the device
